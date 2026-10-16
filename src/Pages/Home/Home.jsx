@@ -1,21 +1,83 @@
-
 import './Home.css';
 import { useState } from 'react';
+import Planet from "../../Components/Planet/Planet";
+import PlanetWorld from "../../Components/PlanetWorld/PlanetWorld";
 
 function Home() {
 
     const [exploring, setExploring] = useState(false);
     const [selectedPlanet, setSelectedPlanet] = useState(null);
 
+
+    // =========================================
+    // PLANET DATA
+    // =========================================
+
+    const planets = {
+
+        design: {
+            name: 'DESIGN',
+            worldName: 'Design World',
+            tagline: 'Visually communicate.',
+            label: 'LEARNING IDEAL / DESIGN',
+            description:
+                'A space for creativity, bringing ideas to life and communicating visually.'
+        },
+
+        coding: {
+            name: 'CODING',
+            worldName: 'Coding World',
+            tagline: 'Build with code.',
+            label: 'LEARNING IDEAL / CODING',
+            description:
+                'A space for building ideas with code.'
+        },
+
+        teaching: {
+            name: 'TEACHING',
+            worldName: 'Teaching World',
+            tagline: 'Learn how to learn.',
+            label: 'LEARNING IDEAL / TEACHING',
+            description:
+                'What do you want to learn today?'
+        },
+
+        music: {
+            name: 'MUSIC',
+            worldName: 'Music World',
+            tagline: 'Communicate with music.',
+            label: 'LEARNING IDEAL / MUSIC',
+            description:
+                'A space for creativity and bringing ideas to life through music.'
+        }
+
+    };
+
+
+    // =========================================
+    // RETURN HOME
+    // =========================================
+
     function returnHome() {
+
         setSelectedPlanet(null);
         setExploring(false);
+
     }
 
+
+    // =========================================
+    // RETURN
+    // =========================================
+
     return (
+
         <div className={`hero ${exploring ? 'exploring' : ''}`}>
 
-            {/* Landing Screen */}
+
+            {/* =========================================
+                LANDING SCREEN
+            ========================================= */}
 
             <div className="landing">
 
@@ -38,11 +100,16 @@ function Home() {
             </div>
 
 
-            {/* Universe */}
+            {/* =========================================
+                UNIVERSE
+            ========================================= */}
 
             <div className="universe">
 
-                {/* Central World */}
+
+                {/* =====================================
+                    CENTRAL WORLD
+                ===================================== */}
 
                 <button
                     type="button"
@@ -54,211 +121,42 @@ function Home() {
                 </button>
 
 
-                {/* Design Planet */}
+                {/* =====================================
+                    PLANETS
+                ===================================== */}
 
-                <button
-                    type="button"
-                    className="planet planet-design"
-                    onClick={() => setSelectedPlanet("design")}
-                    aria-label="Explore Design World"
-                >
-                    <span className="planet-name">
-                        DESIGN
-                    </span>
+                {Object.entries(planets).map(([planetId, planet]) => (
 
-                    <span className="planet-tagline">
-                        Visually communicate.
-                    </span>
-                </button>
+                    <Planet
+                        key={planetId}
+                        planetId={planetId}
+                        name={planet.name}
+                        tagline={planet.tagline}
+                        onClick={() => setSelectedPlanet(planetId)}
+                    />
 
-
-                {/* Coding Planet */}
-
-                <button
-                    type="button"
-                    className="planet planet-coding"
-                    onClick={() => setSelectedPlanet("coding")}
-                    aria-label="Explore Coding"
-                >
-                    <span className="planet-name">
-                        CODING
-                    </span>
-
-                    <span className="planet-tagline">
-                        Build with code.
-                    </span>
-                </button>
+                ))}
 
 
-                {/* Teaching Planet */}
+                {/* =====================================
+                    SELECTED PLANET WORLD
+                ===================================== */}
 
-                <button
-                    type="button"
-                    className="planet planet-teaching"
-                    onClick={() => setSelectedPlanet("teaching")}
-                    aria-label="Explore Teaching"
-                >
-                    <span className="planet-name">
-                        TEACHING
-                    </span>
-
-                    <span className="planet-tagline">
-                        Learn how to Learn.
-                    </span>
-                </button>
-
-
-                {/* Music Planet */}
-
-                <button
-                    type="button"
-                    className="planet planet-music"
-                    onClick={() => setSelectedPlanet("music")}
-                    aria-label="Explore Music"
-                >
-                    <span className="planet-name">
-                        MUSIC
-                    </span>
-
-                    <span className="planet-tagline">
-                        Communicate with Music.
-                    </span>
-                </button>
-
-
-                {/* Design World */}
-
-                {selectedPlanet === "design" && (
-
-                    <div className="planet-world design-world">
-
-                        <button
-                            type="button"
-                            className="back-button"
-                            onClick={() => setSelectedPlanet(null)}
-                        >
-                            ← Back to Universe
-                        </button>
-
-                        <div className="world-content">
-
-                            <p className="world-label">
-                                LEARNING IDEAL / DESIGN
-                            </p>
-
-                            <h1>Design World</h1>
-
-                            <p>
-                                A space for creativity, bringing ideas to life and communicaticating visually.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                )}
                 
+                {selectedPlanet && (
 
-                {/* Coding World */}
-
-                {selectedPlanet === "coding" && (
-
-                    <div className="planet-world coding-world">
-
-                        <button
-                            type="button"
-                            className="back-button"
-                            onClick={() => setSelectedPlanet(null)}
-                        >
-                            ← Back to Universe
-                        </button>
-
-                        <div className="world-content">
-
-                            <p className="world-label">
-                                LEARNING IDEAL / CODING
-                            </p>
-
-                            <h1>Coding World</h1>
-
-                            <p>
-                                A space for creativity, visual thinking,
-                                and bringing ideas to life.
-                            </p>
-
-                        </div>
-
-                    </div>
+                    <PlanetWorld
+                        planet={planets[selectedPlanet]}
+                        onBack={() => setSelectedPlanet(null)}
+                    />
 
                 )}
 
-                {/* Teaching World */}
-
-                {selectedPlanet === "teaching" && (
-
-                    <div className="planet-world teaching-world">
-
-                        <button
-                            type="button"
-                            className="back-button"
-                            onClick={() => setSelectedPlanet(null)}
-                        >
-                            ← Back to Universe
-                        </button>
-
-                        <div className="world-content">
-
-                            <p className="world-label">
-                                LEARNING IDEAL / TEACHING
-                            </p>
-
-                            <h1>Teaching World</h1>
-
-                            <p>
-                                What do you want to learn today?
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                )}
-
-                 {/* Music World */}
-
-                {selectedPlanet === "music" && (
-
-                    <div className="planet-world music-world">
-
-                        <button
-                            type="button"
-                            className="back-button"
-                            onClick={() => setSelectedPlanet(null)}
-                        >
-                            ← Back to Universe
-                        </button>
-
-                        <div className="world-content">
-
-                            <p className="world-label">
-                                LEARNING IDEAL / MUSIC
-                            </p>
-
-                            <h1>Music World</h1>
-
-                            <p>
-                                A Space for creativity, and bringing ideas to life throgh music.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                )}
 
             </div>
 
         </div>
+
     );
 }
 

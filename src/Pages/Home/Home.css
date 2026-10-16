@@ -1,4 +1,3 @@
-
 /* =========================================
    HERO / MAIN CONTAINER
 ========================================= */
@@ -42,8 +41,14 @@
 {
     opacity: 0;
     transform: scale(1.4);
+
     pointer-events: none;
 }
+
+
+/* =========================================
+   HERO TITLE
+========================================= */
 
 .hero-title
 {
@@ -56,6 +61,11 @@
 
     animation: pulse 4s ease-in-out infinite;
 }
+
+
+/* =========================================
+   HERO TAGLINE
+========================================= */
 
 .hero-tagline
 {
@@ -81,31 +91,43 @@
 {
     width: 200px;
 
-    margin-top: 28px;
-    padding: 12px 24px;
+    margin-top: 32px;
+    padding: 14px 28px;
 
-    font-size: 18px;
+    font-size: 17px;
     font-family: inherit;
+    font-weight: 500;
 
     background: #0f172a;
     color: #ffffff;
 
-    border: 1px solid #1e293b;
+    border: 1px solid #334155;
     border-radius: 24px;
 
     cursor: pointer;
 
+    box-shadow:
+        0 0 0 rgba(59, 130, 246, 0);
+
+    animation: explore-pulse 3s ease-in-out infinite;
+
     transition:
         background 0.3s ease,
         border-color 0.3s ease,
-        transform 0.3s ease;
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .hero .explore-button:hover
 {
     background: #184285;
     border-color: #3b82f6;
-    transform: translateY(-2px);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 20px rgba(59, 130, 246, 0.15),
+        0 0 40px rgba(59, 130, 246, 0.08);
 }
 
 
@@ -126,6 +148,27 @@
     {
         transform: scale(1.04);
         opacity: 1;
+    }
+}
+
+
+/* =========================================
+   EXPLORE BUTTON ANIMATION
+========================================= */
+
+@keyframes explore-pulse
+{
+    0%,
+    100%
+    {
+        box-shadow:
+            0 0 0 rgba(59, 130, 246, 0);
+    }
+
+    50%
+    {
+        box-shadow:
+            0 0 20px rgba(59, 130, 246, 0.12);
     }
 }
 
@@ -160,6 +203,7 @@
 {
     opacity: 1;
     transform: scale(1);
+
     pointer-events: auto;
 }
 
@@ -174,6 +218,7 @@
 
     width: 220px;
     height: 220px;
+
     padding: 20px;
     margin: 0;
 
@@ -199,7 +244,7 @@
         0 0 40px rgba(59, 130, 246, 0.15),
         0 0 100px rgba(59, 130, 246, 0.08);
 
-    transform: scale(0.5);
+    transform: scale(0);
     opacity: 0;
 
     transition:
@@ -222,136 +267,7 @@
 }
 
 
-/* =========================================
-   PLANETS
-========================================= */
 
-.hero .planet
-{
-    position: absolute;
-
-    width: 120px;
-    height: 120px;
-    padding: 0;
-    margin: 0;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-
-    overflow: hidden;
-
-    border-radius: 50%;
-    border: 1px solid #334155;
-
-    background: #0f172a;
-    color: #ffffff;
-
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    opacity: 0;
-    transform: scale(0);
-
-    transition:
-        opacity 1s ease,
-        transform 1.2s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
-}
-
-.exploring .planet
-{
-    opacity: 1;
-    transform: scale(1);
-}
-
-
-
-
-/* =========================================
-   PLANET HOVER EFFECTS
-========================================= */
-
-/* PLANET NAME */
-.planet-name {
-    transform: translateY(0);
-    transition: transform 0.3s ease;
-}
-
-/* PLANET TAGLINE — ALWAYS VISIBLE */
-.planet-tagline {
-    max-width: 110px;
-    padding: 0 6px;
-
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: 0;
-    text-align: center;
-
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* SUBTLE GLOW + NAME MOVEMENT */
-.hero .planet:hover,
-.hero .planet:focus-visible {
-    border-color: #60a5fa;
-    background: #111c35;
-
-    box-shadow:
-        0 0 20px rgba(59, 130, 246, 0.12),
-        0 0 35px rgba(59, 130, 246, 0.18);
-}
-
-.hero .planet:hover .planet-name,
-.hero .planet:focus-visible .planet-name {
-    transform: translateY(-3px);
-}
-
-/* =========================================
-   PLANET POSITIONS
-========================================= */
-
-.planet-design
-{
-    top: 15%;
-    left: 25%;
-
-    transition-delay: 0.8s;
-}
-
-.planet-coding
-{
-    top: 25%;
-    right: 15%;
-
-    transition-delay: 1s;
-}
-
-.planet-teaching
-{
-    bottom: 15%;
-    left: 20%;
-
-    transition-delay: 1.2s;
-}
-
-.planet-music
-{
-    bottom: 20%;
-    right: 25%;
-
-    transition-delay: 1.4s;
-}
 
 
 /* =========================================
@@ -362,10 +278,13 @@
 {
     position: absolute;
     inset: 0;
+
     z-index: 3;
 
     min-height: 100vh;
+
     box-sizing: border-box;
+
     padding: 32px;
 
     background:
@@ -394,7 +313,9 @@
     align-self: flex-start;
 
     width: auto;
+
     margin-top: 0;
+
     padding: 6px 10px;
 
     background: transparent;
@@ -491,9 +412,15 @@
         box-sizing: border-box;
     }
 
+
+    /* -----------------------------------------
+       LANDING
+    ----------------------------------------- */
+
     .hero-title
     {
         font-size: clamp(3rem, 12vw, 6rem);
+
         text-align: center;
     }
 
@@ -502,6 +429,7 @@
         padding: 0 20px;
 
         font-size: clamp(1rem, 5vw, 1.5rem);
+
         text-align: center;
     }
 
@@ -510,10 +438,20 @@
         width: 180px;
     }
 
+
+    /* -----------------------------------------
+       UNIVERSE
+    ----------------------------------------- */
+
     .universe
     {
         overflow: hidden;
     }
+
+
+    /* -----------------------------------------
+       CENTRAL WORLD
+    ----------------------------------------- */
 
     .hero .universe-center
     {
@@ -521,49 +459,15 @@
         height: 150px;
 
         font-size: 15px;
+
         text-align: center;
     }
 
-    .hero .planet
-    {
-        width: 85px;
-        height: 85px;
 
-        font-size: 11px;
-    }
 
-    
-    .planet-tagline 
-    {
-        max-width: 75px;
-        padding: 0 3px;
-        font-size: 8px;
-        line-height: 1.3;
-    }
-
-    .planet-design
-    {
-        top: 18%;
-        left: 10%;
-    }
-
-    .planet-coding
-    {
-        top: 22%;
-        right: 8%;
-    }
-
-    .planet-teaching
-    {
-        bottom: 18%;
-        left: 8%;
-    }
-
-    .planet-music
-    {
-        bottom: 20%;
-        right: 10%;
-    }
+    /* -----------------------------------------
+       PLANET WORLD
+    ----------------------------------------- */
 
     .planet-world
     {
@@ -584,7 +488,9 @@
     {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
+
         transition-duration: 0.01ms !important;
+
         scroll-behavior: auto !important;
     }
 }
